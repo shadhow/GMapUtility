@@ -1,0 +1,31 @@
+﻿Add references:
+	GMap.NET.Core
+	GMap.NET.WindowsForms
+	http://greatmaps.codeplex.com/releases/view/73162
+	
+	Microsoft.SqlServer.Types (use Nuget)
+		"For desktop applications, add the following line of code to run before any spatial operations are performed: 
+		SqlServerTypes.Utilities.LoadNativeAssemblies(AppDomain.CurrentDomain.BaseDirectory);""
+
+
+	Catfood.Shapefile -- simple shapefile reader
+	http://shapefile.codeplex.com/
+
+
+Add GMap.NET toolbox control
+        http://www.independent-software.com/gmap-net-tutorial-maps-markers-and-polygons/
+        http://geekswithblogs.net/saifkhan/archive/2011/08/03/using-gmap.net-ndash-great-maps-for-windows-forms-amp-presentation.aspx
+		http://greatmaps.wikia.com/wiki/Main_Page
+		https://greatmaps.codeplex.com/discussions	
+
+Add GMap using statements
+	using GMap.NET;
+	using GMap.NET.WindowsForms;
+	using GMap.NET.WindowsForms.Markers;
+	using GMap.NET.MapProviders;
+
+
+	===============================
+	http://blog.ethereal-engineering.com/2013/01/heatmaps-using-gheat-and-gmap.html
+	https://code.google.com/p/gheat/
+		

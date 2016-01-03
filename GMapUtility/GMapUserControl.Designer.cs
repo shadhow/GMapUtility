@@ -32,21 +32,22 @@
             this.CoordsLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusMessageLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.GMapVersionLabel = new System.Windows.Forms.ToolStripStatusLabel();
-            this.OptionsPanel = new System.Windows.Forms.Panel();
-            this.ZoomCentreCheckBox = new System.Windows.Forms.CheckBox();
-            this.ZoomTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.ProviderComboBox = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.OverlayListBox = new System.Windows.Forms.ListBox();
             this.gMap = new GMap.NET.WindowsForms.GMapControl();
+            this.MenuStrip = new System.Windows.Forms.MenuStrip();
+            this.MenuProviderComboBox = new System.Windows.Forms.ToolStripComboBox();
+            this.optionsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.LegendMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.StatusStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ZoomMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ZoomStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.StatusStrip.SuspendLayout();
-            this.OptionsPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
             this.splitContainer.SuspendLayout();
+            this.MenuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // StatusStrip
@@ -54,109 +55,57 @@
             this.StatusStrip.BackColor = System.Drawing.Color.WhiteSmoke;
             this.StatusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.CoordsLabel,
+            this.ZoomStatusLabel,
             this.StatusMessageLabel,
             this.GMapVersionLabel});
-            this.StatusStrip.Location = new System.Drawing.Point(0, 407);
+            this.StatusStrip.Location = new System.Drawing.Point(0, 425);
             this.StatusStrip.Name = "StatusStrip";
-            this.StatusStrip.Size = new System.Drawing.Size(486, 22);
+            this.StatusStrip.Size = new System.Drawing.Size(503, 22);
             this.StatusStrip.TabIndex = 2;
             this.StatusStrip.Text = "statusStrip1";
             // 
             // CoordsLabel
             // 
+            this.CoordsLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
+            this.CoordsLabel.ForeColor = System.Drawing.Color.Blue;
             this.CoordsLabel.Name = "CoordsLabel";
-            this.CoordsLabel.Size = new System.Drawing.Size(90, 17);
+            this.CoordsLabel.Size = new System.Drawing.Size(85, 17);
             this.CoordsLabel.Text = "[mouse coords]";
             // 
             // StatusMessageLabel
             // 
+            this.StatusMessageLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F);
             this.StatusMessageLabel.Name = "StatusMessageLabel";
-            this.StatusMessageLabel.Size = new System.Drawing.Size(95, 17);
+            this.StatusMessageLabel.Size = new System.Drawing.Size(91, 17);
             this.StatusMessageLabel.Text = "[status message]";
             // 
             // GMapVersionLabel
             // 
             this.GMapVersionLabel.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic);
             this.GMapVersionLabel.Name = "GMapVersionLabel";
-            this.GMapVersionLabel.Size = new System.Drawing.Size(286, 17);
+            this.GMapVersionLabel.Size = new System.Drawing.Size(271, 17);
             this.GMapVersionLabel.Spring = true;
             this.GMapVersionLabel.Text = "GMap.NET 1.7.1";
             this.GMapVersionLabel.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
-            // OptionsPanel
-            // 
-            this.OptionsPanel.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.OptionsPanel.Controls.Add(this.ZoomCentreCheckBox);
-            this.OptionsPanel.Controls.Add(this.ZoomTextBox);
-            this.OptionsPanel.Controls.Add(this.label2);
-            this.OptionsPanel.Controls.Add(this.ProviderComboBox);
-            this.OptionsPanel.Controls.Add(this.label1);
-            this.OptionsPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.OptionsPanel.Location = new System.Drawing.Point(0, 0);
-            this.OptionsPanel.Name = "OptionsPanel";
-            this.OptionsPanel.Size = new System.Drawing.Size(486, 27);
-            this.OptionsPanel.TabIndex = 4;
-            // 
-            // ZoomCentreCheckBox
-            // 
-            this.ZoomCentreCheckBox.AutoSize = true;
-            this.ZoomCentreCheckBox.Location = new System.Drawing.Point(309, 5);
-            this.ZoomCentreCheckBox.Name = "ZoomCentreCheckBox";
-            this.ZoomCentreCheckBox.Size = new System.Drawing.Size(107, 17);
-            this.ZoomCentreCheckBox.TabIndex = 4;
-            this.ZoomCentreCheckBox.Text = "Zoom and centre";
-            this.ZoomCentreCheckBox.UseVisualStyleBackColor = true;
-            // 
-            // ZoomTextBox
-            // 
-            this.ZoomTextBox.Location = new System.Drawing.Point(284, 3);
-            this.ZoomTextBox.Name = "ZoomTextBox";
-            this.ZoomTextBox.Size = new System.Drawing.Size(19, 20);
-            this.ZoomTextBox.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(225, 6);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(59, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Zoom level";
-            // 
-            // ProviderComboBox
-            // 
-            this.ProviderComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.ProviderComboBox.FormattingEnabled = true;
-            this.ProviderComboBox.Location = new System.Drawing.Point(50, 3);
-            this.ProviderComboBox.Name = "ProviderComboBox";
-            this.ProviderComboBox.Size = new System.Drawing.Size(169, 21);
-            this.ProviderComboBox.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(3, 6);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Provider";
-            // 
             // splitContainer
             // 
             this.splitContainer.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.splitContainer.Location = new System.Drawing.Point(62, 39);
+            this.splitContainer.Location = new System.Drawing.Point(36, 50);
             this.splitContainer.Name = "splitContainer";
             // 
             // splitContainer.Panel1
             // 
             this.splitContainer.Panel1.Controls.Add(this.OverlayListBox);
+            this.splitContainer.Panel1MinSize = 1;
             // 
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.Controls.Add(this.gMap);
-            this.splitContainer.Size = new System.Drawing.Size(363, 351);
+            this.splitContainer.Size = new System.Drawing.Size(363, 302);
             this.splitContainer.SplitterDistance = 120;
             this.splitContainer.TabIndex = 5;
+            this.splitContainer.Paint += new System.Windows.Forms.PaintEventHandler(this.SplitContainer_Paint);
             // 
             // OverlayListBox
             // 
@@ -190,24 +139,83 @@
             this.gMap.Size = new System.Drawing.Size(129, 101);
             this.gMap.TabIndex = 2;
             this.gMap.Zoom = 0D;
+            this.gMap.OnMapZoomChanged += new GMap.NET.MapZoomChanged(this.gMap_OnMapZoomChanged);
+            this.gMap.MouseLeave += new System.EventHandler(this.gMap_MouseLeave);
+            this.gMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.gMap_MouseMove);
+            // 
+            // MenuStrip
+            // 
+            this.MenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.MenuProviderComboBox,
+            this.optionsToolStripMenuItem});
+            this.MenuStrip.Location = new System.Drawing.Point(0, 0);
+            this.MenuStrip.Name = "MenuStrip";
+            this.MenuStrip.Size = new System.Drawing.Size(503, 27);
+            this.MenuStrip.TabIndex = 6;
+            this.MenuStrip.Text = "menuStrip1";
+            // 
+            // MenuProviderComboBox
+            // 
+            this.MenuProviderComboBox.Name = "MenuProviderComboBox";
+            this.MenuProviderComboBox.Size = new System.Drawing.Size(170, 23);
+            this.MenuProviderComboBox.SelectedIndexChanged += new System.EventHandler(this.ProviderComboBox_SelectedIndexChanged);
+            // 
+            // optionsToolStripMenuItem
+            // 
+            this.optionsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.LegendMenuItem,
+            this.StatusStripMenuItem,
+            this.ZoomMenuItem});
+            this.optionsToolStripMenuItem.Name = "optionsToolStripMenuItem";
+            this.optionsToolStripMenuItem.Size = new System.Drawing.Size(61, 23);
+            this.optionsToolStripMenuItem.Text = "Options";
+            // 
+            // LegendMenuItem
+            // 
+            this.LegendMenuItem.Name = "LegendMenuItem";
+            this.LegendMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.LegendMenuItem.Text = "Show/Hide legend";
+            this.LegendMenuItem.Click += new System.EventHandler(this.LegendMenuItem_Click);
+            // 
+            // StatusStripMenuItem
+            // 
+            this.StatusStripMenuItem.Name = "StatusStripMenuItem";
+            this.StatusStripMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.StatusStripMenuItem.Text = "Show/Hide status strip";
+            this.StatusStripMenuItem.Click += new System.EventHandler(this.StatusStripMenuItem_Click);
+            // 
+            // ZoomMenuItem
+            // 
+            this.ZoomMenuItem.Name = "ZoomMenuItem";
+            this.ZoomMenuItem.Size = new System.Drawing.Size(214, 22);
+            this.ZoomMenuItem.Text = "Zoom with/without centre";
+            this.ZoomMenuItem.Click += new System.EventHandler(this.ZoomMenuItem_Click);
+            // 
+            // ZoomStatusLabel
+            // 
+            this.ZoomStatusLabel.Font = new System.Drawing.Font("Segoe UI", 8F);
+            this.ZoomStatusLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
+            this.ZoomStatusLabel.Name = "ZoomStatusLabel";
+            this.ZoomStatusLabel.Size = new System.Drawing.Size(41, 17);
+            this.ZoomStatusLabel.Text = "[zoom]";
             // 
             // GMapUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.MenuStrip);
             this.Controls.Add(this.splitContainer);
-            this.Controls.Add(this.OptionsPanel);
             this.Controls.Add(this.StatusStrip);
             this.Name = "GMapUserControl";
-            this.Size = new System.Drawing.Size(486, 429);
+            this.Size = new System.Drawing.Size(503, 447);
             this.StatusStrip.ResumeLayout(false);
             this.StatusStrip.PerformLayout();
-            this.OptionsPanel.ResumeLayout(false);
-            this.OptionsPanel.PerformLayout();
             this.splitContainer.Panel1.ResumeLayout(false);
             this.splitContainer.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
             this.splitContainer.ResumeLayout(false);
+            this.MenuStrip.ResumeLayout(false);
+            this.MenuStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,14 +227,15 @@
         private System.Windows.Forms.ToolStripStatusLabel CoordsLabel;
         private System.Windows.Forms.ToolStripStatusLabel StatusMessageLabel;
         private System.Windows.Forms.ToolStripStatusLabel GMapVersionLabel;
-        private System.Windows.Forms.Panel OptionsPanel;
-        private System.Windows.Forms.CheckBox ZoomCentreCheckBox;
-        private System.Windows.Forms.TextBox ZoomTextBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox ProviderComboBox;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.SplitContainer splitContainer;
         private System.Windows.Forms.ListBox OverlayListBox;
         private GMap.NET.WindowsForms.GMapControl gMap;
+        private System.Windows.Forms.MenuStrip MenuStrip;
+        private System.Windows.Forms.ToolStripComboBox MenuProviderComboBox;
+        private System.Windows.Forms.ToolStripMenuItem optionsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem LegendMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem StatusStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem ZoomMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel ZoomStatusLabel;
     }
 }

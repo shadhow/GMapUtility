@@ -22,13 +22,15 @@ namespace GMapUtility
         #region properties
         public Exception ErrorMessage { get; private set; }
 
-        public bool TopPanelVisible { get; private set; }
+        //public bool TopPanelVisible { get; private set; }
+        public bool MenuStripVisible { get; private set; }
         public bool StatusStripVisible { get; private set; }
         public bool LegendPanelVisible { get; private set; }
 
         public string CurrentProvider { get; set; }
         public string PositionKeyword { get; set; }
         public int CurrentZoomLevel { get; set; }
+        public bool ZoomWithCentre  { get; set; }
 
         public List<string> GMapProvidersList { get; private set; }  //TODO: make  provider list 
         public List<string> OverlayList { get; private set; }
@@ -74,8 +76,8 @@ namespace GMapUtility
         {
             splitContainer.Dock = DockStyle.Fill;
             splitContainer.Panel1Collapsed = true;
-            gMap.Dock = DockStyle.Fill;
 
+            gMap.Dock = DockStyle.Fill;
             OverlayListBox.Dock = DockStyle.Fill;
 
         }
@@ -97,7 +99,8 @@ namespace GMapUtility
             gMap_OnMapZoomChanged();
 
             //provider
-            ProviderComboBox.SelectedIndex = ProviderComboBox.FindStringExact(CurrentProvider);
+            //ProviderComboBox.SelectedIndex = ProviderComboBox.FindStringExact(CurrentProvider);
+            MenuProviderComboBox.SelectedIndex = MenuProviderComboBox.FindStringExact(CurrentProvider);
 
             StatusMessageLabel.Text = "";
 
@@ -114,7 +117,7 @@ namespace GMapUtility
             MarkerSize = markerSize;
             bitmap = CreateBitmap(MarkerSize, MarkerColour);
 
-            ShowTopPanel(true);
+            ShowMenuStrip (true);
             ShowStatusStrip(true);
 
 
@@ -125,9 +128,9 @@ namespace GMapUtility
 
         private void SetProvidersList()
         {
-            ProviderComboBox.SelectedIndexChanged -= ProviderComboBox_SelectedIndexChanged;
-            ProviderComboBox.DataSource = GMapProviders.List;
-            ProviderComboBox.SelectedIndexChanged += ProviderComboBox_SelectedIndexChanged;
+            MenuProviderComboBox.SelectedIndexChanged -= ProviderComboBox_SelectedIndexChanged;
+            MenuProviderComboBox.ComboBox.DataSource=GMapProviders.List;
+            MenuProviderComboBox.SelectedIndexChanged += ProviderComboBox_SelectedIndexChanged;
 
             if (string.IsNullOrEmpty(CurrentProvider))
                 CurrentProvider = "BingSatelliteMap";
@@ -181,23 +184,25 @@ namespace GMapUtility
         }
 
         //status
-        public void ShowTopPanel(bool on)
+        public void ShowMenuStrip(bool on)
         {
-            OptionsPanel.Visible = on;
-            TopPanelVisible = on;
-            //this.Refresh();
+            MenuStrip.Visible = on;
+            MenuStripVisible = on;
+            this.Refresh();
         }
 
         public void ShowStatusStrip(bool on)
         {
             StatusStrip.Visible = on;
             StatusStripVisible = on;
+            this.Refresh();
         }
 
         public void ShowLegendPanel(bool on)
         {
             splitContainer.Panel1Collapsed = !on;
             LegendPanelVisible = on;
+            this.Refresh();
         }
 
         //plotting markers
@@ -237,7 +242,7 @@ namespace GMapUtility
         //events
         private void ProviderComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            gMap.MapProvider = (GMapProvider)ProviderComboBox.SelectedItem;
+            gMap.MapProvider = (GMapProvider)MenuProviderComboBox.SelectedItem;
             gMap.Refresh();
         }
 
@@ -255,24 +260,36 @@ namespace GMapUtility
             CoordsLabel.Text = "Coords: [" + longitude + ", " + latitude + "]";
         }
 
+        private void gMap_MouseLeave(object sender, EventArgs e)
+        {
+            CoordsLabel.Text = "";
+        }
+
         private void gMap_OnMapZoomChanged()
         {
-            ZoomTextBox.Text = gMap.Zoom.ToString();
+            ZoomStatusLabel.Text = "[Zoom " + gMap.Zoom.ToString() + "]";
             Size size = new System.Drawing.Size(splitContainer.Panel2.Width, splitContainer.Panel2.Height);
             gMap.ClientSize = size;
             this.Refresh();
         }
 
-        private void ZoomCentreCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void ZoomMenuItem_Click(object sender, EventArgs e)
         {
-            gMap.MouseWheelZoomType = (ZoomCentreCheckBox.Checked) ? MouseWheelZoomType.MousePositionAndCenter :
+            ZoomWithCentre = !ZoomWithCentre;
+            gMap.MouseWheelZoomType = (ZoomWithCentre) ? MouseWheelZoomType.MousePositionAndCenter :
                                                                             MouseWheelZoomType.MousePositionWithoutCenter;
         }
 
-        private void gMap_MouseLeave(object sender, EventArgs e)
+        private void LegendMenuItem_Click(object sender, EventArgs e)
         {
-            CoordsLabel.Text = "";
+            this.ShowLegendPanel(!LegendPanelVisible);
         }
+
+        private void StatusStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.ShowStatusStrip(!StatusStripVisible);
+        }
+
 
         //utility methods
         private Bitmap CreateBitmap(int side, Color colour)
@@ -347,7 +364,41 @@ namespace GMapUtility
             MessageBox.Show("not available");
         }
 
+        private void SplitContainer_Paint(object sender, PaintEventArgs e)
+        {
+            var control = sender as SplitContainer;
+            //paint the three dots'
+            Point[] points = new Point[3];
+            var w = control.Width;
+            var h = control.Height;
+            var d = control.SplitterDistance;
+            var sW = control.SplitterWidth;
 
+            //calculate the position of the points'
+            if (control.Orientation == Orientation.Horizontal)
+            {
+                points[0] = new Point((w / 2), d + (sW / 2));
+                points[1] = new Point(points[0].X - 10, points[0].Y);
+                points[2] = new Point(points[0].X + 10, points[0].Y);
+            }
+            else
+            {
+                points[0] = new Point(d + (sW / 2), (h / 2));
+                points[1] = new Point(points[0].X, points[0].Y - 10);
+                points[2] = new Point(points[0].X, points[0].Y + 10);
+            }
+
+            foreach (Point p in points)
+            {
+                p.Offset(-2, -2);
+                e.Graphics.FillEllipse(SystemBrushes.ControlDark,
+                    new Rectangle(p, new Size(3, 3)));
+
+                p.Offset(1, 1);
+                e.Graphics.FillEllipse(SystemBrushes.ControlLight,
+                    new Rectangle(p, new Size(3, 3)));
+            }
+        }
 
     }
 }
